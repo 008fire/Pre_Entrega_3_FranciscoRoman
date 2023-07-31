@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+Lista de Clientes
+{% endblock titulo %}
+
+{% block contenido %}
+<h1>Lista de Clientes</h1>
+<a href="{% url 'crear_cliente' %}">Crear clientes</a>
+<br>
+
+<table class="table">
+  <tbody>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <td>DNI</td>
+      <td>Email</td>
+      <td></td>
+    </tr>
+    {% for cliente in object_list %}
+    <tr>
+      <td>{{ cliente.id }}</td>
+      <td>{{ cliente.nombre }}</td>
+      <td>{{ cliente.apellido }}</td>
+      <td>{{ cliente.dni}}</td>
+      <td>{{ cliente.email}}</td>
+           <td>
+        <a href="{% url 'ver_cliente' cliente.id %}">Ver</a>
+      </td>
+      <td>
+        <a href="{% url 'editar_cliente' cliente.id %}">Editar</a>
+      </td>
+      <td>
+        <a href="{% url 'eliminar_cliente' cliente.id %}">
+          <i class="bi bi-trash"></i>
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock contenido %}
